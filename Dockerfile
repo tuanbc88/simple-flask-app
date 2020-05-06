@@ -1,9 +1,9 @@
 FROM python:alpine3.11
 
-COPY . .
+WORKDIR /simple-flask-app
+
+COPY . /simple-flask-app
 
 RUN pip install -r requirements.txt
 
-RUN export FLASK_APP=app.py
-
-CMD flask run
+CMD ["python","app.py"]
