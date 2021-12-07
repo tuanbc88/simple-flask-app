@@ -29,6 +29,8 @@ jobs:
     executor: python/default
     steps:
       - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: Install Python deps in a venv
           command: |
@@ -40,6 +42,10 @@ jobs:
           command: |
             pip install -r requirements.txt
             python3 test.py
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "venv"
 workflows:
   lint-test-deploy:
     jobs: 
