@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.5.0
+  docker: circleci/docker@2.0.1
 
 jobs:
   lint:
@@ -51,3 +52,6 @@ workflows:
     jobs: 
       - lint
       - test
+      - docker/publish:
+          deploy: false
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
