@@ -66,4 +66,8 @@ workflows:
       - docker/publish:
           deploy: false
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-      - deploy
+      - deploy:
+          requires:
+            - lint
+            - test
+            - docker/publish
