@@ -71,3 +71,6 @@ workflows:
             - lint
             - test
             - docker/publish
+          filters:
+            branches:
+              only: master
